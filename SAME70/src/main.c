@@ -13,6 +13,7 @@
  */
 
 #include "asf.h"
+#include "ioport.h"
 
 
 /************************************************************************/
@@ -60,19 +61,23 @@ void fan_on(void) {
 }
 
 void fan_off(void) {
-	pio_clear(FAN_PIO, FAN_PIO_PIN_MASK)
+	pio_clear(FAN_PIO, FAN_PIO_PIN_MASK);
 }
 
+// Função de Callback para o botão touch
 void touch_callBack(void) {
-	fan_flag = true;
+	fan_flag = !fan_flag;
 }
 
-// Funcao principal chamada na inicalizacao do uC.
+void presence_callBack(void) {
+	led_flag = !led_flag;
+}
+
 int main(void){
 	
-	/* Initialize the board. */
+	// Inicializa a placa
 	sysclk_init();
-	board_init();
+	// board_init();
 	ioport_init();
 	
 	delay_init();
@@ -92,6 +97,8 @@ int main(void){
 	// Configura o interruptor
 	pio_enable_interrupt(TOUCH_PIO, TOUCH_PIO_PIN_MASK);
 	pio_handler_set(TOUCH_PIO, ID_PIOC, TOUCH_PIO_PIN_MASK, PIO_IT_FALL_EDGE, &touch_callBack);
+	pio_enable_interrupt(PRESENCE_PIO, PRESENCE_PIO_PIN_MASK);
+	pio_handler_set(PRESENCE_PIO, ID_PIOC, PRESENCE_PIO_PIN_MASK, PIO_IT_HIGH_LEVEL, &presence_callBack);
 	
 	// Configura o NVIC
 	NVIC_EnableIRQ(ID_PIOC);
@@ -100,15 +107,15 @@ int main(void){
 	
 	while (1) {
 		
-		// LED
-		if(pio_get(PRESENCE_PIO, PIO_TYPE_PIO_INPUT, PRESENCE_PIO_PIN_MASK)){
-			led_on();	
+		// Luz
+		if(led_flag){
+			led_on();
 		}
 		else {
 			led_off();	
 		}
 		
-		// Fan
+		// Ventilador
 		if (fan_flag) {
 			fan_on();
 		} 

@@ -6,6 +6,8 @@ src\ASF\common\services\clock\same70\sysclk.c
 
 src\ASF\common\services\delay\sam\cycle_counter.c
 
+src\ASF\common\services\sleepmgr\sam\sleepmgr.c
+
 src\ASF\common\utils\interrupt\interrupt_sam_nvic.c
 
 src\ASF\sam\drivers\mpu\mpu.c
