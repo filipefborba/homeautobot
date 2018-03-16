@@ -21,7 +21,7 @@ Nosso projeto consiste na automação e praticidade na realização de tarefas s
 
 Utilizamos o PIOC porque não achamos necessário utilizar mais de um PIO para o projeto, porque é bastante simples. Além disso, foi necessário o uso de um MOSFET para conseguir controlar o Mini Cooler, pois a tensão de alimentação necessária dele era de 5V. A seguir, temos o diagrama de blocos com mais detalhes:
 
-![blocos_detalhado](blocos_detalhado.png)
+![Diagrama Detalhado do Projeto](diagrama2.jpeg)
 
 
 ## Vídeo do Projeto
