@@ -15,7 +15,7 @@ Filipe Borba, Gabriel Moreira, Hugo Mendes
 ## Descrição do Projeto
 Nosso projeto consiste na automação e praticidade na realização de tarefas simples do cotidiano como ligar a luz e um ventilador. Nosso projeto tem por entradas um Sensor de Presença e um Sensor Touch. Já as saídas são um Mini Cooler e um LED Azul.
 
-![blocos_rascunho](blocos_rascunho.png)
+![Diagrama Básico do Projeto](diagrama.jpeg)
 
 ## Detalhamento
 
